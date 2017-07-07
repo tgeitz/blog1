@@ -18,8 +18,8 @@ class ParticipateInForumTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory('App\User')->create();
-        $this->thread = factory('App\Thread')->create();
+        $this->user = create('App\User');
+        $this->thread = create('App\Thread');
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class ParticipateInForumTest extends TestCase
 
         //  create() persists the reply, which we're already doing.  Use make() instead
 //        $reply = factory('App\Reply')->create();
-        $reply = factory('App\Reply')->make();
+        $reply = make('App\Reply');
         $this->post($this->thread->path() . '/replies', $reply->toArray())
             ->assertRedirect($this->thread->path());
 

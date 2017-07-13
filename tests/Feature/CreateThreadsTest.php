@@ -19,6 +19,14 @@ class CreateThreadsTest extends TestCase
         
         $this->user = create('App\User');
     }
+
+    /** @test */
+    public function a_guest_may_not_see_the_thread_create_page()
+    {
+        $this->withExceptionHandling()
+            ->get('/threads/create')
+            ->assertRedirect('/login');
+    }
     
     /** @test */
     public function a_guest_may_not_create_new_forum_threads()
